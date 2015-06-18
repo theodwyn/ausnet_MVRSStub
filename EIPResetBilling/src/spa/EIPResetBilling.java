@@ -1,27 +1,14 @@
 package spa;
 
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.OptionBuilder;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.PosixParser;
-import org.apache.commons.lang.ArrayUtils;
 import org.apache.log4j.Logger;
 
-import database.BILLING_REQUEST;
-import database.DbUtil;
 import database.EIP_DAO;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.sql.Timestamp;
 import java.text.NumberFormat;
-import java.util.Calendar;
-import java.util.Iterator;
-import java.util.List;
 
 public class EIPResetBilling {
 
@@ -42,9 +29,6 @@ public class EIPResetBilling {
 
 	private static int recordCount = 0;
 	private static int requestCount = 0;
-	private static int requestTotal = 0;
-	private static int insertCount = 0;
-	private static int batchCount = 0;
 	private static int batchLimit = 1000;
 
 	static RuntimeProperties properties = RuntimeProperties.getInstance();
@@ -82,6 +66,7 @@ public class EIPResetBilling {
 						".. .. Batch : %s - %s",
 						pctFormat.format((double) recordCount
 								/ (double) requests.getRequestsCount()), req.toString()));
+				dao.executeBatch();
 				requestCount = 0;
 			}
 
@@ -92,6 +77,7 @@ public class EIPResetBilling {
 				pctFormat.format((double) recordCount / (double) requests.getRequestsCount()),
 				"Complete"));
 
+		dao.executeBatch();
 		dao.closeConnection();
 
 		log.info("End EIP Reset Billing");
@@ -119,12 +105,5 @@ public class EIPResetBilling {
 			log.info(".. Host                : Unknown");
 		}
 	}
-
-	/*
-	 * private static String formatTimestamp(String seedTimestamp, int
-	 * hourOffset) { Timestamp ts =
-	 * DbUtil.formatStringToTimestamp(seedTimestamp); ts.setTime(ts.getTime() +
-	 * hourOffset * 3600000); return DbUtil.formatTimestampToString(ts); }
-	 */
 
 }

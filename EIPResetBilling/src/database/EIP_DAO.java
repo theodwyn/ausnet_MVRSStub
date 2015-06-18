@@ -3,13 +3,18 @@ package database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.HashMap;
 
+import spa.Request;
 import spa.RuntimeProperties;
 
 public class EIP_DAO {
 
 	private Connection connection;
 	private String dbOwner;
+	private Calendar sysdate;
+	HashMap<String,String> ProductMap = new HashMap<String, String>();
 
 	private PreparedStatement preparedStatement = null;
 
@@ -17,6 +22,15 @@ public class EIP_DAO {
 
 	public EIP_DAO() {
 		openConnection();
+
+		sysdate = getSysdate();
+		
+		String Products = properties.getProperty("ddProduct");
+		String[] Product = Products.split(";");
+		for (int i=0; i<Product.length;i++) {
+			String[] ProductParts = Product[i].split(",");
+			ProductMap.put(ProductParts[0], ProductParts[1]);
+		}
 	}
 
 	public void openConnection() {
@@ -42,9 +56,11 @@ public class EIP_DAO {
 		}
 	}
 
-	public boolean insertBILL_REQUEST(BILLING_REQUEST br) {
+	public boolean insertBILL_REQUEST(Request req) {
 
 		boolean result = false;
+
+		for (String key : ProductMap.keySet()) {
 
 		StringBuilder sb = new StringBuilder();
 
@@ -79,7 +95,7 @@ public class EIP_DAO {
 		sb.append("    EXPORT_STATUS, ");
 		sb.append("    LAST_UPD_TIME, ");
 		sb.append("    LAST_UPD_BY, ");
-
+		sb.append("    COMMENTS ");
 		sb.append("  ) ");
 		sb.append("  VALUES ");
 		sb.append("  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
@@ -89,34 +105,36 @@ public class EIP_DAO {
 				openConnection();
 			}
 			preparedStatement = connection.prepareStatement(sb.toString());
-			preparedStatement.setString(1, br.getBILLING_REQUEST_ID());
-			preparedStatement.setString(2, br.getREAD_STATUS());
-			preparedStatement.setString(3, br.getUTC_EXCP_TRIGGER_TIME());
-			preparedStatement.setString(4, br.getUTILITY_ID());
-			preparedStatement.setString(5, br.getPREMISE_UDC_ID());
-			preparedStatement.setString(6, br.getSDP_UDC_ID());
-			preparedStatement.setString(7, br.getSDP_ROW_ID());
-			preparedStatement.setString(8, br.getSDP_UNIVERSAL_ID());
-			preparedStatement.setString(9, br.getINSERT_TIME());
-			preparedStatement.setString(10, br.getUTC_REQUEST_START_TIME());
-			preparedStatement.setString(11, br.getUTC_REQUEST_END_TIME());
-			preparedStatement.setString(12, br.getPREMISE_TIMEZONE());
-			preparedStatement.setString(13, br.getOFF_CYCLE_FLAG());
-			preparedStatement.setString(14, br.getUTC_BILLING_END_TIME());
-			preparedStatement.setString(15, br.getPROTOCOL_VERSION());
-			preparedStatement.setString(16, br.getEXPORT_PROTOCOL());
-			preparedStatement.setString(17, br.getLOADER_STATUS());
-			preparedStatement.setString(18, br.getUTC_MAX_READ_WAIT_TIME());
-			preparedStatement.setString(19, br.getUTC_MIN_END_TIME());
-			preparedStatement.setString(20, br.getUTC_MAX_END_TIME());
-			preparedStatement.setString(21, br.getDD_PRODUCT_ROW_ID());
-			preparedStatement.setString(22, br.getDD_GROUP_NAME());
-			preparedStatement.setString(23, br.getUTC_PROCESS_START_TIME());
-			preparedStatement.setString(24, br.getOVERRIDE_IND());
-			preparedStatement.setString(25, br.getSENT_FOR_BILLING());
-			preparedStatement.setString(26, br.getEXPORT_STATUS());
-			preparedStatement.setString(27, br.getLAST_UPD_TIME());
-			preparedStatement.setString(28, br.getLAST_UPD_BY());
+			
+			preparedStatement.setString(1,"emapp.SEQ_BILLING_REQUEST.NEXTVAL");
+			preparedStatement.setString(2,"READ FOUND");
+			preparedStatement.setDate(3,formatSqlDate(0,0));
+			preparedStatement.setString(4,"SP AUSNET");
+			preparedStatement.setString(5,req.getSDP().substring(0,10));
+			preparedStatement.setString(6,req.getSDP());
+			preparedStatement.setString(7, req.getMeterRef());
+			preparedStatement.setString(8,req.getSDP());
+			preparedStatement.setDate(9,formatSqlDate(0,0));
+			preparedStatement.setDate(10,formatSqlDate(-2,14*60));
+			preparedStatement.setDate(11,formatSqlDate(-1,14*60));
+			preparedStatement.setString(12,"GMT+10:00");
+			preparedStatement.setString(13,"P");
+			preparedStatement.setDate(14,formatSqlDate(-1,0));
+			preparedStatement.setInt(15,2);
+			preparedStatement.setString(16,"SPA,BEA,NEM12,LR,EASTENGY");
+			preparedStatement.setString(17,"LOADED");
+			preparedStatement.setDate(18,formatSqlDate(2,0));
+			preparedStatement.setDate(19,formatSqlDate(-1,0));
+			preparedStatement.setDate(20,formatSqlDate(2,0));
+			preparedStatement.setString(21,ProductMap.get(key));
+			preparedStatement.setString(22,key);
+			preparedStatement.setDate(23,formatSqlDate(0,-10*60));
+			preparedStatement.setInt(24,0);
+			preparedStatement.setString(25,"S");
+			preparedStatement.setString(26,"EXPORT_SENT");
+			preparedStatement.setDate(27,formatSqlDate(-0,0));
+			preparedStatement.setString(28,"BillingHistoryLoader");
+			preparedStatement.setString(29,"SVT Generated");
 
 			preparedStatement.addBatch();
 
@@ -125,6 +143,7 @@ public class EIP_DAO {
 			e.printStackTrace();
 		} finally {
 			DbUtil.close(preparedStatement);
+		}
 		}
 		return result;
 	}
@@ -137,4 +156,25 @@ public class EIP_DAO {
 		}
 	}
 
+	private java.sql.Date formatSqlDate(int dayOffset, int minuteOffset) {
+		Calendar cal = (Calendar) sysdate.clone();
+		if (dayOffset != 0) {
+			cal.add(Calendar.DATE, dayOffset);
+		}
+
+		if (minuteOffset != 0) {
+			cal.add(Calendar.MINUTE, minuteOffset);
+		}
+		return new java.sql.Date(cal.getTime().getTime());
+	}
+
+	private Calendar getSysdate() {
+		Calendar sysdate = Calendar.getInstance();
+		sysdate.set(Calendar.HOUR_OF_DAY, 0);
+		sysdate.clear(Calendar.HOUR);
+		sysdate.clear(Calendar.MINUTE);
+		sysdate.clear(Calendar.SECOND);
+		sysdate.clear(Calendar.MILLISECOND);
+		return sysdate;
+	}
 }
