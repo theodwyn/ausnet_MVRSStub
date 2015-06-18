@@ -14,20 +14,21 @@ public class EIP_DAO {
 	private Connection connection;
 	private String dbOwner;
 	private Calendar sysdate;
-	HashMap<String,String> ProductMap = new HashMap<String, String>();
+	HashMap<String, String> ProductMap = new HashMap<String, String>();
 
-	private PreparedStatement preparedStatement = null;
+	private PreparedStatement BILLING_REQUEST_stmt = null;
 
 	private static RuntimeProperties properties = RuntimeProperties.getInstance();
 
 	public EIP_DAO() {
 		openConnection();
+		BILLING_REQUEST_stmt = prepareBILLING_REQUEST();
 
 		sysdate = getSysdate();
-		
+
 		String Products = properties.getProperty("ddProduct");
 		String[] Product = Products.split(";");
-		for (int i=0; i<Product.length;i++) {
+		for (int i = 0; i < Product.length; i++) {
 			String[] ProductParts = Product[i].split(",");
 			ProductMap.put(ProductParts[0], ProductParts[1]);
 		}
@@ -56,12 +57,9 @@ public class EIP_DAO {
 		}
 	}
 
-	public boolean insertBILL_REQUEST(Request req) {
+	public PreparedStatement prepareBILLING_REQUEST() {
 
-		boolean result = false;
-
-		for (String key : ProductMap.keySet()) {
-
+		PreparedStatement stmt = null;
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("INSERT ");
@@ -98,59 +96,66 @@ public class EIP_DAO {
 		sb.append("    COMMENTS ");
 		sb.append("  ) ");
 		sb.append("  VALUES ");
-		sb.append("  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
+		sb.append("  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ");
 
 		try {
-			if (this.connection == null) {
-				openConnection();
-			}
-			preparedStatement = connection.prepareStatement(sb.toString());
-			
-			preparedStatement.setString(1,"emapp.SEQ_BILLING_REQUEST.NEXTVAL");
-			preparedStatement.setString(2,"READ FOUND");
-			preparedStatement.setDate(3,formatSqlDate(0,0));
-			preparedStatement.setString(4,"SP AUSNET");
-			preparedStatement.setString(5,req.getSDP().substring(0,10));
-			preparedStatement.setString(6,req.getSDP());
-			preparedStatement.setString(7, req.getMeterRef());
-			preparedStatement.setString(8,req.getSDP());
-			preparedStatement.setDate(9,formatSqlDate(0,0));
-			preparedStatement.setDate(10,formatSqlDate(-2,14*60));
-			preparedStatement.setDate(11,formatSqlDate(-1,14*60));
-			preparedStatement.setString(12,"GMT+10:00");
-			preparedStatement.setString(13,"P");
-			preparedStatement.setDate(14,formatSqlDate(-1,0));
-			preparedStatement.setInt(15,2);
-			preparedStatement.setString(16,"SPA,BEA,NEM12,LR,EASTENGY");
-			preparedStatement.setString(17,"LOADED");
-			preparedStatement.setDate(18,formatSqlDate(2,0));
-			preparedStatement.setDate(19,formatSqlDate(-1,0));
-			preparedStatement.setDate(20,formatSqlDate(2,0));
-			preparedStatement.setString(21,ProductMap.get(key));
-			preparedStatement.setString(22,key);
-			preparedStatement.setDate(23,formatSqlDate(0,-10*60));
-			preparedStatement.setInt(24,0);
-			preparedStatement.setString(25,"S");
-			preparedStatement.setString(26,"EXPORT_SENT");
-			preparedStatement.setDate(27,formatSqlDate(-0,0));
-			preparedStatement.setString(28,"BillingHistoryLoader");
-			preparedStatement.setString(29,"SVT Generated");
-
-			preparedStatement.addBatch();
-
-			result = true;
+			stmt = connection.prepareStatement(sb.toString());
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			DbUtil.close(preparedStatement);
 		}
+
+		return stmt;
+	}
+
+	public boolean insertBILL_REQUEST(Request req) {
+
+		boolean result = false;
+
+		for (String key : ProductMap.keySet()) {
+
+			try {
+				BILLING_REQUEST_stmt.setString(1, "emapp.SEQ_BILLING_REQUEST.NEXTVAL");
+				BILLING_REQUEST_stmt.setString(2, "READ FOUND");
+				BILLING_REQUEST_stmt.setDate(3, formatSqlDate(0, 0));
+				BILLING_REQUEST_stmt.setString(4, "SP AUSNET");
+				BILLING_REQUEST_stmt.setString(5, req.getSDP().substring(0, 10));
+				BILLING_REQUEST_stmt.setString(6, req.getSDP());
+				BILLING_REQUEST_stmt.setString(7, req.getMeterRef());
+				BILLING_REQUEST_stmt.setString(8, req.getSDP());
+				BILLING_REQUEST_stmt.setDate(9, formatSqlDate(0, 0));
+				BILLING_REQUEST_stmt.setDate(10, formatSqlDate(-2, 14 * 60));
+				BILLING_REQUEST_stmt.setDate(11, formatSqlDate(-1, 14 * 60));
+				BILLING_REQUEST_stmt.setString(12, "GMT+10:00");
+				BILLING_REQUEST_stmt.setString(13, "P");
+				BILLING_REQUEST_stmt.setDate(14, formatSqlDate(-1, 0));
+				BILLING_REQUEST_stmt.setInt(15, 2);
+				BILLING_REQUEST_stmt.setString(16, "SPA,BEA,NEM12,LR,EASTENGY");
+				BILLING_REQUEST_stmt.setString(17, "LOADED");
+				BILLING_REQUEST_stmt.setDate(18, formatSqlDate(2, 0));
+				BILLING_REQUEST_stmt.setDate(19, formatSqlDate(-1, 0));
+				BILLING_REQUEST_stmt.setDate(20, formatSqlDate(2, 0));
+				BILLING_REQUEST_stmt.setString(21, ProductMap.get(key));
+				BILLING_REQUEST_stmt.setString(22, key);
+				BILLING_REQUEST_stmt.setDate(23, formatSqlDate(0, -10 * 60));
+				BILLING_REQUEST_stmt.setInt(24, 0);
+				BILLING_REQUEST_stmt.setString(25, "S");
+				BILLING_REQUEST_stmt.setString(26, "EXPORT_SENT");
+				BILLING_REQUEST_stmt.setDate(27, formatSqlDate(-0, 0));
+				BILLING_REQUEST_stmt.setString(28, "BillingHistoryLoader");
+				BILLING_REQUEST_stmt.setString(29, "SVT Generated");
+
+				BILLING_REQUEST_stmt.addBatch();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
 		}
 		return result;
 	}
 
 	public void executeBatch() {
 		try {
-			preparedStatement.executeBatch();
+			BILLING_REQUEST_stmt.executeBatch();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
