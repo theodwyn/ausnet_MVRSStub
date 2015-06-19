@@ -35,8 +35,12 @@ public class ReadRequests {
 		Request req = null;
 
 		requestRecord = br.readLine();
-		if (requestRecord != null) {
-			req = new Request(requestRecord);
+		if (requestRecord != null && !requestRecord.equals("")) {
+			try {
+				req = new Request(requestRecord);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		return req;
@@ -48,8 +52,7 @@ public class ReadRequests {
 					this.requestsFilename)));
 			lnr.skip(Long.MAX_VALUE);
 
-			// Add +1 for 0 index
-			this.setRequestsCount(lnr.getLineNumber() + 1);
+			this.setRequestsCount(lnr.getLineNumber());
 			lnr.close();
 		} catch (Exception e) {
 			e.printStackTrace();

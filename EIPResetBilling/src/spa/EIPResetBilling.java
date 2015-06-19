@@ -12,14 +12,8 @@ import java.text.NumberFormat;
 
 public class EIPResetBilling {
 
-	private final static String version = "V1.0. 2015-06-12";
-
 	private static String propertiesFilename;
 	private static String requestsFilename;
-
-	// Change History
-	// V1.0.1 2014-09-19 - Include optional insert into POLICY_EVENT
-	// V1.0.0 2014-09-04 - Initial version
 
 	private static Logger log = Logger.getLogger("EIPResetBilling");
 
@@ -27,55 +21,59 @@ public class EIPResetBilling {
 
 	private static Request req = null;
 
-	private static int recordCount = 0;
-	private static int requestCount = 0;
-	private static int batchLimit = 1;
+	private static double totalRecords = 0;
+	private static double recordCount = 0;
+	private static double requestCount = 0;
+	
+	private final static double batchLimit = 20;
+	private final static int progressBatch = 10000;
 
 	static RuntimeProperties properties = RuntimeProperties.getInstance();
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 
 		log.info("Start EIP Reset Billing");
-		log.info(".. Version             : " + version);
 
 		initialize(args);
 		dao = new EIP_DAO();
 
-		NumberFormat pctFormat = NumberFormat.getPercentInstance();
-		pctFormat.setMinimumFractionDigits(2);
-
 		ReadRequests requests = new ReadRequests(requestsFilename);
-		log.info("request count: " + requests.getRequestsCount());
+		totalRecords = requests.getRequestsCount();
 
 		req = requests.getNextRequest();
 
-		// Main loop
 		while (req != null) {
 			recordCount++;
 
+			// Only generate Billing Requests for MRIM SDP's
+			// All SDP's will have one "91" Channel
 			if (req.getChannelNumber().equals("91")) {
-				requestCount++;
 				if (req.getInstallationType().equals("MRIM")) {
+					requestCount++;
+					
+					// A Billing Request will be created for each Product in the ddProducts property
+					// MDMT,1-27HL;NEM12 LR,1-27KH;NEM12 FRMP,1-27J1;PV2,1-27NB
 					dao.insertBILL_REQUEST(req);
 				}
-				dao.updateLAST_INTERVAL_SET(req);
 			}
+			// Update all channels (MRIM and BASIC)
+			dao.updateLAST_INTERVAL_SET(req);
 
+			// Inserts and Updates batched - execute when defined limit reached
 			if (requestCount == batchLimit) {
-				log.info(String.format(
-						".. .. Batch : %s - %s",
-						pctFormat.format((double) recordCount
-								/ (double) requests.getRequestsCount()), req.toString()));
 				dao.executeBatch();
 				requestCount = 0;
+			}
+			
+			// Periodically log a progress message
+			if (recordCount % progressBatch == 0) {
+				progressLogging(req.toString());
 			}
 
 			req = requests.getNextRequest();
 		}
 
-		log.info(String.format(".. .. Batch : %s - %s",
-				pctFormat.format((double) recordCount / (double) requests.getRequestsCount()),
-				"Complete"));
+		progressLogging("Complete");
 
 		dao.executeBatch();
 		dao.closeConnection();
@@ -98,7 +96,6 @@ public class EIPResetBilling {
 		requestsFilename = properties.getProperty("requestsFilename");
 		log.info(".. Requests filename   : " + requestsFilename);
 
-		// Retrieve name of current host computer
 		try {
 			log.info(".. Host                : " + InetAddress.getLocalHost().getHostName());
 		} catch (UnknownHostException e2) {
@@ -106,4 +103,11 @@ public class EIPResetBilling {
 		}
 	}
 
+	private static void progressLogging(String message) {
+		NumberFormat pctFormat = NumberFormat.getPercentInstance();
+		pctFormat.setMinimumFractionDigits(2);
+
+		log.info(String.format(".. Progress : %s - %s",
+				pctFormat.format(recordCount / totalRecords), message));
+	}
 }

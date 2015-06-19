@@ -14,8 +14,8 @@ public class EIP_DAO {
 	private Connection connection;
 	private String dbOwner;
 
-	private java.sql.Date UTC_BILL_DATE;
-	private java.sql.Date UTC_BILL_DATE_MINUS1;
+	private java.sql.Time UTC_BILL_DATE;
+	private java.sql.Time UTC_BILL_DATE_MINUS1;
 
 	HashMap<String, String> ProductMap = new HashMap<String, String>();
 
@@ -74,13 +74,12 @@ public class EIP_DAO {
 	}
 
 	public boolean updateLAST_INTERVAL_SET(Request req) {
-
 		boolean result = false;
 
 		try {
-			LAST_INTERVAL_SET_stmt.setDate(1, UTC_BILL_DATE);
-			LAST_INTERVAL_SET_stmt.setString(2, req.getMeterRef());
-
+			LAST_INTERVAL_SET_stmt.setTime(1, UTC_BILL_DATE);
+			LAST_INTERVAL_SET_stmt.setString(2, req.getChannelRef());
+			 
 			LAST_INTERVAL_SET_stmt.addBatch();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -147,31 +146,31 @@ public class EIP_DAO {
 
 			try {
 				BILLING_REQUEST_stmt.setString(1, "READ FOUND");
-				BILLING_REQUEST_stmt.setDate(2, formatSqlDate(0, 0));
+				BILLING_REQUEST_stmt.setTime(2, formatSqlTime(0, 0));
 				BILLING_REQUEST_stmt.setString(3, "SP AUSNET");
 				BILLING_REQUEST_stmt.setString(4, req.getSDP().substring(0, 10));
 				BILLING_REQUEST_stmt.setString(5, req.getSDP());
 				BILLING_REQUEST_stmt.setString(6, req.getSDPRef());
 				BILLING_REQUEST_stmt.setString(7, req.getSDP());
-				BILLING_REQUEST_stmt.setDate(8, formatSqlDate(0, 0));
-				BILLING_REQUEST_stmt.setDate(9, UTC_BILL_DATE_MINUS1);
-				BILLING_REQUEST_stmt.setDate(10, UTC_BILL_DATE);
+				BILLING_REQUEST_stmt.setTime(8, formatSqlTime(0, 0));
+				BILLING_REQUEST_stmt.setTime(9, UTC_BILL_DATE_MINUS1);
+				BILLING_REQUEST_stmt.setTime(10, UTC_BILL_DATE);
 				BILLING_REQUEST_stmt.setString(11, "GMT+10:00");
 				BILLING_REQUEST_stmt.setString(12, "P");
-				BILLING_REQUEST_stmt.setDate(13, UTC_BILL_DATE);
+				BILLING_REQUEST_stmt.setTime(13, UTC_BILL_DATE);
 				BILLING_REQUEST_stmt.setString(14, "2");
 				BILLING_REQUEST_stmt.setString(15, "SPA,BEA,NEM12,LR,EASTENGY");
 				BILLING_REQUEST_stmt.setString(16, "LOADED");
-				BILLING_REQUEST_stmt.setDate(17, formatSqlDate(2, 0));
-				BILLING_REQUEST_stmt.setDate(18, UTC_BILL_DATE);
-				BILLING_REQUEST_stmt.setDate(19, formatSqlDate(2, 0));
+				BILLING_REQUEST_stmt.setTime(17, formatSqlTime(2, 0));
+				BILLING_REQUEST_stmt.setTime(18, UTC_BILL_DATE);
+				BILLING_REQUEST_stmt.setTime(19, formatSqlTime(2, 0));
 				BILLING_REQUEST_stmt.setString(20, ProductMap.get(key));
 				BILLING_REQUEST_stmt.setString(21, key);
-				BILLING_REQUEST_stmt.setDate(22, formatSqlDate(0, -10 * 60));
+				BILLING_REQUEST_stmt.setTime(22, formatSqlTime(0, -10 * 60));
 				BILLING_REQUEST_stmt.setInt(23, 0);
 				BILLING_REQUEST_stmt.setString(24, "S");
 				BILLING_REQUEST_stmt.setString(25, "EXPORT_SENT");
-				BILLING_REQUEST_stmt.setDate(26, formatSqlDate(0, 0));
+				BILLING_REQUEST_stmt.setTime(26, formatSqlTime(0, 0));
 				BILLING_REQUEST_stmt.setString(27, "BillingHistoryLoader");
 				BILLING_REQUEST_stmt.setString(28, "SVT Generated");
 
@@ -187,6 +186,7 @@ public class EIP_DAO {
 	public void executeBatch() {
 		try {
 			BILLING_REQUEST_stmt.executeBatch();
+			LAST_INTERVAL_SET_stmt.executeBatch();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -201,13 +201,13 @@ public class EIP_DAO {
 		cal.clear(Calendar.MILLISECOND);
 
 		cal.add(Calendar.DATE, -1);
-		UTC_BILL_DATE = new java.sql.Date(cal.getTime().getTime());
+		UTC_BILL_DATE = new java.sql.Time(cal.getTime().getTime());
 
 		cal.add(Calendar.DATE, -1);
-		UTC_BILL_DATE_MINUS1 = new java.sql.Date(cal.getTime().getTime());
+		UTC_BILL_DATE_MINUS1 = new java.sql.Time(cal.getTime().getTime());
 	}
 
-	private java.sql.Date formatSqlDate(int dayOffset, int minuteOffset) {
+	private java.sql.Time formatSqlTime(int dayOffset, int minuteOffset) {
 		Calendar cal = Calendar.getInstance();
 		if (dayOffset != 0) {
 			cal.add(Calendar.DATE, dayOffset);
@@ -216,8 +216,8 @@ public class EIP_DAO {
 		if (minuteOffset != 0) {
 			cal.add(Calendar.MINUTE, minuteOffset);
 		}
-
-		return new java.sql.Date(cal.getTime().getTime());
+		
+		return new java.sql.Time(cal.getTime().getTime());
 	}
 
 	private void loadProducts() {
