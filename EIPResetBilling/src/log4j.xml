@@ -9,7 +9,7 @@
         </layout>
     </appender>
 	<appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
-      <param name="File" value="logs/PNIntervalDataGenerate.log"/>
+      <param name="File" value="logs/EIPResetBilling.log"/>
       <param name="Threshold" value="INFO"/>
       <param name="MaxFileSize" value="1MB"/>
       <param name="MaxBackupIndex" value="14"/>
