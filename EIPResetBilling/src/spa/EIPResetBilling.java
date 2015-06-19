@@ -29,7 +29,7 @@ public class EIPResetBilling {
 
 	private static int recordCount = 0;
 	private static int requestCount = 0;
-	private static int batchLimit = 1000;
+	private static int batchLimit = 1;
 
 	static RuntimeProperties properties = RuntimeProperties.getInstance();
 
@@ -58,7 +58,7 @@ public class EIPResetBilling {
 				if (req.getInstallationType().equals("MRIM")) {
 					dao.insertBILL_REQUEST(req);
 				}
-				
+				dao.updateLAST_INTERVAL_SET(req);
 			}
 
 			if (requestCount == batchLimit) {

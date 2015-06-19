@@ -13,25 +13,24 @@ public class EIP_DAO {
 
 	private Connection connection;
 	private String dbOwner;
-	private Calendar sysdate;
+
+	private java.sql.Date UTC_BILL_DATE;
+	private java.sql.Date UTC_BILL_DATE_MINUS1;
+
 	HashMap<String, String> ProductMap = new HashMap<String, String>();
 
 	private PreparedStatement BILLING_REQUEST_stmt = null;
+	private PreparedStatement LAST_INTERVAL_SET_stmt = null;
 
 	private static RuntimeProperties properties = RuntimeProperties.getInstance();
 
 	public EIP_DAO() {
 		openConnection();
 		BILLING_REQUEST_stmt = prepareBILLING_REQUEST();
+		LAST_INTERVAL_SET_stmt = prepareLAST_INTERVAL_SET();
 
-		sysdate = getSysdate();
-
-		String Products = properties.getProperty("ddProduct");
-		String[] Product = Products.split(";");
-		for (int i = 0; i < Product.length; i++) {
-			String[] ProductParts = Product[i].split(",");
-			ProductMap.put(ProductParts[0], ProductParts[1]);
-		}
+		this.setBillDates();
+		this.loadProducts();
 	}
 
 	public void openConnection() {
@@ -57,7 +56,40 @@ public class EIP_DAO {
 		}
 	}
 
-	public PreparedStatement prepareBILLING_REQUEST() {
+	private PreparedStatement prepareLAST_INTERVAL_SET() {
+		PreparedStatement stmt = null;
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("UPDATE ").append(this.dbOwner).append(".LAST_INTERVAL_SET ");
+		sb.append("  SET UTC_LAST_END_TIME = ? ");
+		sb.append("  WHERE CHANNEL_ID = ? ");
+
+		try {
+			stmt = connection.prepareStatement(sb.toString());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return stmt;
+	}
+
+	public boolean updateLAST_INTERVAL_SET(Request req) {
+
+		boolean result = false;
+
+		try {
+			LAST_INTERVAL_SET_stmt.setDate(1, UTC_BILL_DATE);
+			LAST_INTERVAL_SET_stmt.setString(2, req.getMeterRef());
+
+			LAST_INTERVAL_SET_stmt.addBatch();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	private PreparedStatement prepareBILLING_REQUEST() {
 
 		PreparedStatement stmt = null;
 		StringBuilder sb = new StringBuilder();
@@ -89,14 +121,14 @@ public class EIP_DAO {
 		sb.append("    DD_GROUP_NAME, ");
 		sb.append("    UTC_PROCESS_START_TIME, ");
 		sb.append("    OVERRIDE_IND, ");
-		sb.append("    SENT_FOR_BILLING, ");
+		sb.append("    SENT_FOR_BILLING_FLAG, ");
 		sb.append("    EXPORT_STATUS, ");
 		sb.append("    LAST_UPD_TIME, ");
 		sb.append("    LAST_UPD_BY, ");
 		sb.append("    COMMENTS ");
 		sb.append("  ) ");
 		sb.append("  VALUES ");
-		sb.append("  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ");
+		sb.append("  (EMAPP.SEQ_BILLING_REQUEST.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
 
 		try {
 			stmt = connection.prepareStatement(sb.toString());
@@ -114,35 +146,34 @@ public class EIP_DAO {
 		for (String key : ProductMap.keySet()) {
 
 			try {
-				BILLING_REQUEST_stmt.setString(1, "emapp.SEQ_BILLING_REQUEST.NEXTVAL");
-				BILLING_REQUEST_stmt.setString(2, "READ FOUND");
-				BILLING_REQUEST_stmt.setDate(3, formatSqlDate(0, 0));
-				BILLING_REQUEST_stmt.setString(4, "SP AUSNET");
-				BILLING_REQUEST_stmt.setString(5, req.getSDP().substring(0, 10));
-				BILLING_REQUEST_stmt.setString(6, req.getSDP());
-				BILLING_REQUEST_stmt.setString(7, req.getMeterRef());
-				BILLING_REQUEST_stmt.setString(8, req.getSDP());
-				BILLING_REQUEST_stmt.setDate(9, formatSqlDate(0, 0));
-				BILLING_REQUEST_stmt.setDate(10, formatSqlDate(-2, 14 * 60));
-				BILLING_REQUEST_stmt.setDate(11, formatSqlDate(-1, 14 * 60));
-				BILLING_REQUEST_stmt.setString(12, "GMT+10:00");
-				BILLING_REQUEST_stmt.setString(13, "P");
-				BILLING_REQUEST_stmt.setDate(14, formatSqlDate(-1, 0));
-				BILLING_REQUEST_stmt.setInt(15, 2);
-				BILLING_REQUEST_stmt.setString(16, "SPA,BEA,NEM12,LR,EASTENGY");
-				BILLING_REQUEST_stmt.setString(17, "LOADED");
-				BILLING_REQUEST_stmt.setDate(18, formatSqlDate(2, 0));
-				BILLING_REQUEST_stmt.setDate(19, formatSqlDate(-1, 0));
-				BILLING_REQUEST_stmt.setDate(20, formatSqlDate(2, 0));
-				BILLING_REQUEST_stmt.setString(21, ProductMap.get(key));
-				BILLING_REQUEST_stmt.setString(22, key);
-				BILLING_REQUEST_stmt.setDate(23, formatSqlDate(0, -10 * 60));
-				BILLING_REQUEST_stmt.setInt(24, 0);
-				BILLING_REQUEST_stmt.setString(25, "S");
-				BILLING_REQUEST_stmt.setString(26, "EXPORT_SENT");
-				BILLING_REQUEST_stmt.setDate(27, formatSqlDate(-0, 0));
-				BILLING_REQUEST_stmt.setString(28, "BillingHistoryLoader");
-				BILLING_REQUEST_stmt.setString(29, "SVT Generated");
+				BILLING_REQUEST_stmt.setString(1, "READ FOUND");
+				BILLING_REQUEST_stmt.setDate(2, formatSqlDate(0, 0));
+				BILLING_REQUEST_stmt.setString(3, "SP AUSNET");
+				BILLING_REQUEST_stmt.setString(4, req.getSDP().substring(0, 10));
+				BILLING_REQUEST_stmt.setString(5, req.getSDP());
+				BILLING_REQUEST_stmt.setString(6, req.getSDPRef());
+				BILLING_REQUEST_stmt.setString(7, req.getSDP());
+				BILLING_REQUEST_stmt.setDate(8, formatSqlDate(0, 0));
+				BILLING_REQUEST_stmt.setDate(9, UTC_BILL_DATE_MINUS1);
+				BILLING_REQUEST_stmt.setDate(10, UTC_BILL_DATE);
+				BILLING_REQUEST_stmt.setString(11, "GMT+10:00");
+				BILLING_REQUEST_stmt.setString(12, "P");
+				BILLING_REQUEST_stmt.setDate(13, UTC_BILL_DATE);
+				BILLING_REQUEST_stmt.setString(14, "2");
+				BILLING_REQUEST_stmt.setString(15, "SPA,BEA,NEM12,LR,EASTENGY");
+				BILLING_REQUEST_stmt.setString(16, "LOADED");
+				BILLING_REQUEST_stmt.setDate(17, formatSqlDate(2, 0));
+				BILLING_REQUEST_stmt.setDate(18, UTC_BILL_DATE);
+				BILLING_REQUEST_stmt.setDate(19, formatSqlDate(2, 0));
+				BILLING_REQUEST_stmt.setString(20, ProductMap.get(key));
+				BILLING_REQUEST_stmt.setString(21, key);
+				BILLING_REQUEST_stmt.setDate(22, formatSqlDate(0, -10 * 60));
+				BILLING_REQUEST_stmt.setInt(23, 0);
+				BILLING_REQUEST_stmt.setString(24, "S");
+				BILLING_REQUEST_stmt.setString(25, "EXPORT_SENT");
+				BILLING_REQUEST_stmt.setDate(26, formatSqlDate(0, 0));
+				BILLING_REQUEST_stmt.setString(27, "BillingHistoryLoader");
+				BILLING_REQUEST_stmt.setString(28, "SVT Generated");
 
 				BILLING_REQUEST_stmt.addBatch();
 			} catch (SQLException e) {
@@ -161,8 +192,23 @@ public class EIP_DAO {
 		}
 	}
 
+	private void setBillDates() {
+		Calendar cal = Calendar.getInstance();
+
+		cal.set(Calendar.HOUR_OF_DAY, 14);
+		cal.clear(Calendar.MINUTE);
+		cal.clear(Calendar.SECOND);
+		cal.clear(Calendar.MILLISECOND);
+
+		cal.add(Calendar.DATE, -1);
+		UTC_BILL_DATE = new java.sql.Date(cal.getTime().getTime());
+
+		cal.add(Calendar.DATE, -1);
+		UTC_BILL_DATE_MINUS1 = new java.sql.Date(cal.getTime().getTime());
+	}
+
 	private java.sql.Date formatSqlDate(int dayOffset, int minuteOffset) {
-		Calendar cal = (Calendar) sysdate.clone();
+		Calendar cal = Calendar.getInstance();
 		if (dayOffset != 0) {
 			cal.add(Calendar.DATE, dayOffset);
 		}
@@ -170,16 +216,16 @@ public class EIP_DAO {
 		if (minuteOffset != 0) {
 			cal.add(Calendar.MINUTE, minuteOffset);
 		}
+
 		return new java.sql.Date(cal.getTime().getTime());
 	}
 
-	private Calendar getSysdate() {
-		Calendar sysdate = Calendar.getInstance();
-		sysdate.set(Calendar.HOUR_OF_DAY, 0);
-		sysdate.clear(Calendar.HOUR);
-		sysdate.clear(Calendar.MINUTE);
-		sysdate.clear(Calendar.SECOND);
-		sysdate.clear(Calendar.MILLISECOND);
-		return sysdate;
+	private void loadProducts() {
+		String Products = properties.getProperty("ddProduct");
+		String[] Product = Products.split(";");
+		for (int i = 0; i < Product.length; i++) {
+			String[] ProductParts = Product[i].split(",");
+			ProductMap.put(ProductParts[0], ProductParts[1]);
+		}
 	}
 }

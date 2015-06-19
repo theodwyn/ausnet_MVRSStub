@@ -3757,3 +3757,222 @@
 2015-06-18 15:09:56,915 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
 2015-06-18 15:09:56,916 INFO  [EIPResetBilling] .. Host                : SPA403156 
 2015-06-18 15:10:21,642 INFO  [EIPResetBilling] request count: 9 
+2015-06-18 15:43:57,569 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-18 15:43:57,569 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-18 15:43:57,569 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-18 15:43:57,600 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-18 15:43:58,052 INFO  [EIPResetBilling] request count: 9 
+2015-06-18 15:43:58,053 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-18 15:43:58,086 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-18 15:47:40,593 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-18 15:47:40,593 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-18 15:47:40,593 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-18 15:47:40,608 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-18 15:47:47,628 INFO  [EIPResetBilling] request count: 9 
+2015-06-18 15:49:07,285 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-18 15:49:07,317 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-18 15:57:29,787 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-18 15:57:29,787 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-18 15:57:29,787 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-18 15:57:29,802 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-18 15:57:30,177 INFO  [EIPResetBilling] request count: 9 
+2015-06-18 15:57:30,192 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-18 15:57:30,208 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-18 15:57:30,223 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-18 15:57:30,223 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-18 15:57:30,223 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-18 16:00:18,294 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-18 16:00:18,294 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-18 16:00:18,294 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-18 16:00:18,309 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-18 16:00:18,699 INFO  [EIPResetBilling] request count: 9 
+2015-06-18 16:00:18,715 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-18 16:00:18,777 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-18 16:00:18,793 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-18 16:00:18,793 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-18 16:00:18,793 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-18 16:18:13,811 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-18 16:18:13,811 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-18 16:18:13,811 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-18 16:18:13,842 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-18 16:18:14,279 INFO  [EIPResetBilling] request count: 9 
+2015-06-18 16:20:23,574 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-18 16:20:23,574 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-18 16:20:23,574 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-18 16:20:23,606 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-18 16:20:23,918 INFO  [EIPResetBilling] request count: 9 
+2015-06-18 16:20:23,933 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-18 16:20:23,964 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-18 16:20:23,964 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-18 16:20:23,964 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-18 16:20:23,964 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-18 16:34:16,093 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-18 16:34:16,093 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-18 16:34:16,093 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-18 16:34:16,124 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-18 16:34:16,468 INFO  [EIPResetBilling] request count: 9 
+2015-06-18 16:34:16,483 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-18 16:34:16,499 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-18 16:34:16,514 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-18 16:34:16,514 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-18 16:34:16,514 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-19 07:34:07,288 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-19 07:34:07,319 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-19 07:34:07,319 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-19 07:34:07,350 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-19 07:34:07,740 INFO  [EIPResetBilling] request count: 9 
+2015-06-19 07:34:07,788 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 07:34:07,819 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 07:34:07,835 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-19 07:34:07,835 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-19 07:34:07,835 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-19 07:36:12,888 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-19 07:36:12,888 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-19 07:36:12,888 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-19 07:36:12,903 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-19 07:36:13,247 INFO  [EIPResetBilling] request count: 9 
+2015-06-19 07:36:13,262 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 07:36:13,278 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 07:36:13,278 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-19 07:36:13,278 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-19 07:36:13,293 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-19 07:38:21,060 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-19 07:38:21,060 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-19 07:38:21,060 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-19 07:38:21,076 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-19 07:38:21,497 INFO  [EIPResetBilling] request count: 9 
+2015-06-19 07:38:21,512 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 07:38:21,544 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 07:38:21,544 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-19 07:38:21,544 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-19 07:38:21,544 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-19 07:42:58,797 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-19 07:42:58,797 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-19 07:42:58,797 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-19 07:42:58,844 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-19 07:42:59,234 INFO  [EIPResetBilling] request count: 9 
+2015-06-19 07:42:59,234 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 07:42:59,265 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 07:42:59,265 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-19 07:42:59,265 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-19 07:42:59,265 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-19 07:49:41,747 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-19 07:49:41,747 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-19 07:49:41,747 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-19 07:49:41,762 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-19 07:49:42,090 INFO  [EIPResetBilling] request count: 9 
+2015-06-19 07:49:42,106 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 07:49:42,121 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 07:49:42,137 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-19 07:49:42,137 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-19 07:49:42,137 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-19 07:52:59,676 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-19 07:52:59,676 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-19 07:52:59,691 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-19 07:52:59,707 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-19 07:53:00,034 INFO  [EIPResetBilling] request count: 9 
+2015-06-19 07:53:00,050 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 07:53:00,346 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 07:53:00,362 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-19 07:53:00,362 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-19 07:53:00,362 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-19 07:53:15,728 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-19 07:53:15,728 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-19 07:53:15,728 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-19 07:53:15,760 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-19 07:53:16,087 INFO  [EIPResetBilling] request count: 9 
+2015-06-19 07:53:16,103 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 07:53:16,118 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 07:53:16,134 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-19 07:53:16,134 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-19 07:53:16,134 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-19 07:59:52,392 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-19 07:59:52,392 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-19 07:59:52,392 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-19 07:59:52,408 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-19 07:59:52,756 INFO  [EIPResetBilling] request count: 9 
+2015-06-19 07:59:52,772 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 07:59:52,787 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 07:59:52,787 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-19 07:59:52,787 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-19 07:59:52,803 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-19 08:00:34,000 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-19 08:00:34,000 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-19 08:00:34,000 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-19 08:00:34,031 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-19 08:00:34,359 INFO  [EIPResetBilling] request count: 9 
+2015-06-19 08:00:34,375 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 08:00:34,390 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 08:00:34,406 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-19 08:00:34,406 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-19 08:00:34,406 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-19 08:00:44,437 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-19 08:00:44,437 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-19 08:00:44,437 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-19 08:00:44,452 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-19 08:00:44,780 INFO  [EIPResetBilling] request count: 9 
+2015-06-19 08:00:44,780 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 08:00:44,811 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 08:00:44,811 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-19 08:00:44,811 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-19 08:00:44,811 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-19 08:04:59,428 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-19 08:04:59,428 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-19 08:04:59,428 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-19 08:04:59,444 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-19 08:04:59,771 INFO  [EIPResetBilling] request count: 9 
+2015-06-19 08:04:59,771 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 08:04:59,803 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 08:04:59,803 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-19 08:04:59,803 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-19 08:04:59,803 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-19 08:05:19,553 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-19 08:05:19,568 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-19 08:05:19,568 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-19 08:05:19,584 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-19 08:05:19,943 INFO  [EIPResetBilling] request count: 9 
+2015-06-19 08:05:19,958 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 08:05:19,974 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 08:05:19,974 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-19 08:05:19,974 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-19 08:05:19,989 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-19 08:05:51,814 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-19 08:05:51,814 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-19 08:05:51,814 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-19 08:05:51,845 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-19 08:05:52,157 INFO  [EIPResetBilling] request count: 9 
+2015-06-19 08:05:52,172 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 08:05:52,766 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 08:05:53,141 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-19 08:05:53,141 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-19 08:05:53,156 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-19 08:11:04,380 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-19 08:11:04,380 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-19 08:11:04,380 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-19 08:11:04,411 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-19 08:11:04,739 INFO  [EIPResetBilling] request count: 9 
+2015-06-19 08:11:04,754 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 08:11:04,770 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 08:11:04,770 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-19 08:11:04,770 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-19 08:11:04,785 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-19 08:11:34,632 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-19 08:11:34,632 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-19 08:11:34,632 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-19 08:11:34,647 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-19 08:11:35,037 INFO  [EIPResetBilling] request count: 9 
+2015-06-19 08:11:35,037 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 08:11:35,069 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 08:11:35,069 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-19 08:11:35,069 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-19 08:11:35,084 INFO  [EIPResetBilling] End EIP Reset Billing 
+2015-06-19 09:11:00,375 INFO  [EIPResetBilling] Start EIP Reset Billing 
+2015-06-19 09:11:00,375 INFO  [EIPResetBilling] .. Version             : V1.0. 2015-06-12 
+2015-06-19 09:11:00,375 INFO  [EIPResetBilling] .. Requests filename   : C://Temp//EIP_HarnessDevices_20150612s.csv 
+2015-06-19 09:11:00,376 INFO  [EIPResetBilling] .. Host                : SPA403156 
+2015-06-19 09:11:00,797 INFO  [EIPResetBilling] request count: 9 
+2015-06-19 09:11:00,797 INFO  [EIPResetBilling] .. .. Batch : 11.11% - Request [SDP=6305274553-1, MeterId=4070985, MeterRef=1-12K7CZ, MeterProgram=4216, ChannelRef=1-2BQL3P, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 09:11:01,374 INFO  [EIPResetBilling] .. .. Batch : 44.44% - Request [SDP=6305256289-1, MeterId=4203678, MeterRef=1-2BQL4H, MeterProgram=4216, ChannelRef=1-2BQ99W, ChannelNumber=91, InstallationType=MRIM] 
+2015-06-19 09:11:01,843 INFO  [EIPResetBilling] .. .. Batch : 66.67% - Request [SDP=6305172930-1, MeterId=4095588, MeterRef=1-118JPP, MeterProgram=4216, ChannelRef=1-2BQV2J, ChannelNumber=91, InstallationType=BASIC] 
+2015-06-19 09:11:01,843 INFO  [EIPResetBilling] .. .. Batch : 88.89% - Complete 
+2015-06-19 09:11:01,859 INFO  [EIPResetBilling] End EIP Reset Billing 
