@@ -2,9 +2,12 @@ package database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
 import spa.Request;
 import spa.RuntimeProperties;
@@ -73,12 +76,12 @@ public class EIP_DAO {
 		return stmt;
 	}
 
-	public boolean updateLAST_INTERVAL_SET(Request req) {
+	public boolean updateLAST_INTERVAL_SET(String DDSref) {
 		boolean result = false;
 
 		try {
 			LAST_INTERVAL_SET_stmt.setTime(1, UTC_BILL_DATE);
-			LAST_INTERVAL_SET_stmt.setString(2, req.getChannelRef());
+			LAST_INTERVAL_SET_stmt.setString(2, DDSref);
 			 
 			LAST_INTERVAL_SET_stmt.addBatch();
 		} catch (SQLException e) {
@@ -180,6 +183,45 @@ public class EIP_DAO {
 			}
 
 		}
+		return result;
+	}
+	
+	public List<String> listDDS(String SDPRef) {
+		PreparedStatement preparedStatement = null;
+
+		List<String> result = new ArrayList<String>();
+
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("SELECT DDS.row_id AS DDSRef ");
+		sb.append("FROM SIEBEL.S_ASSET@mudr2sebl DDS ");
+		sb.append("INNER JOIN SIEBEL.S_ASSET@mudr2sebl SDP ");
+		sb.append("ON (DDS.service_point_id = SDP.row_id ");
+		sb.append("AND DDS.cfg_type_cd      = 'Data Delivery' ");
+		sb.append("AND DDS.cfg_state_cd     = ?) ");
+		sb.append("WHERE SDP.row_id         = ? ");
+
+		ResultSet rs = null;
+
+		try {
+			if (this.connection == null) {
+				openConnection();
+			}
+			preparedStatement = connection.prepareStatement(sb.toString());
+			preparedStatement.setString(1, properties.getProperty("cfg_state_cd"));
+			preparedStatement.setString(2, SDPRef);
+			
+			rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				result.add(rs.getString("DDSRef"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DbUtil.close(preparedStatement);
+		}
+
 		return result;
 	}
 
